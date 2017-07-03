@@ -1,5 +1,5 @@
 const Person = require('./Person');
-const db = [];
+let db = [];
 
 const http = require('http');
 /**
@@ -12,11 +12,30 @@ const http = require('http');
 
 const server = http.createServer((request, response) => {
     const method = request.method;
+    const url = request.url;
+    const path = '/persons';
 
-
-    if (method == 'POST') {
-        const bucket = [];
+    if (url.indexOf(path) === -1) {
         response.statusCode = 404;
+        return response.end(`cannot ${method} ${url}`);
+    }
+
+    // /persons/<le_nom_special>
+    // ['', 'persons', '<le_nom_special>']
+    // 0, 1, 2
+    if (method === 'DELETE') {
+        const components = url.split('/');
+        if (components.length !== 3) {
+            return response.end('invalid path');
+        }
+
+        const name = components[2];
+        db = db.filter(user => user.name !== name);
+        response.end('');
+    }
+
+    if (method === 'POST') {
+        const bucket = [];
         request.on('data', (chunk) => {
             bucket.push(chunk);
         });
@@ -37,8 +56,8 @@ const server = http.createServer((request, response) => {
             db.push(p);
             return response.end();
         });
-
     }
+
     else if (method === 'GET') {
         response.setHeader('content-type', 'application/json');
         response.end(JSON.stringify(db));
