@@ -3,33 +3,35 @@ const bodyParser = require('body-parser');
 module.exports = (server) => {
     const Person = server.models.Person;
 
-    server.get('/persons', listPersons);
-    server.post('/persons', bodyParser.json(), createPerson);
-    server.delete('/persons/:id',  removePerson);
-    server.put('/persons/:id', bodyParser.json(), updatePerson);
+    return {
+        list,
+        create,
+        remove,
+        update
+    };
 
-    function listPersons(req, res) {
+    function list(req, res) {
         Person.find()
             .then(persons => {
                 res.send(persons);
             });
     }
 
-    function createPerson(req, res) {
+    function create(req, res) {
         Person.create(req.body)
             .then(person => {
                 res.status(201).send(person);
             });
     }
 
-    function removePerson(req, res) {
+    function remove(req, res) {
         Person.findByIdAndRemove(req.params.id)
             .then(()=> {
                 res.status(204).send();
             })
     }
 
-    function updatePerson(req, res) {
+    function update(req, res) {
         Person.findByIdAndUpdate(req.params.id, req.body)
             .then(() => {
                 res.status(204).send();
