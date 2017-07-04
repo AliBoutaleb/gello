@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/julien-sarazin/learning-nodejs#README",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3"
   }
 }
