@@ -18,6 +18,7 @@ module.exports = (server) => {
     function create(req, res) {
         return Task.create(req.body)
             .then(task => res.status(201).send(task))
+            .catch(error => res.status(500).send(error));
     }
 
     function remove(req, res) {
