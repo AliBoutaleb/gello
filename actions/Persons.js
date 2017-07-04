@@ -5,8 +5,8 @@ module.exports = (server) => {
 
     server.get('/persons', listPersons);
     server.post('/persons', bodyParser.json(), createPerson);
-    server.delete('/persons/:id', removePerson);
-    server.put('/persons/:id', updatePerson);
+    server.delete('/persons/:id',  removePerson);
+    server.put('/persons/:id', bodyParser.json(), updatePerson);
 
     function listPersons(req, res) {
         Person.find()

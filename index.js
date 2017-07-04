@@ -5,4 +5,3 @@ require('./models')(server);
 require('./actions')(server);
 
 server.listen(8080);
-
