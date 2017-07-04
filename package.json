@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://gitlab.com/julien-sarazin/learning-nodejs/issues"
   },
-  "homepage": "https://gitlab.com/julien-sarazin/learning-nodejs#README"
+  "homepage": "https://gitlab.com/julien-sarazin/learning-nodejs#README",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
