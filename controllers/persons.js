@@ -21,7 +21,8 @@ module.exports = (server) => {
         Person.create(req.body)
             .then(person => {
                 res.status(201).send(person);
-            });
+            })
+            .catch(err => res.status(500).send(err));
     }
 
     function remove(req, res) {

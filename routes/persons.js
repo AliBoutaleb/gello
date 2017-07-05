@@ -6,6 +6,7 @@ module.exports = (server) => {
 
     router.post('/',
         server.middlewares.bodyParser.json(),
+        server.middlewares.ensureBodyFields(['email', 'password']),
         server.controllers.persons.create);
 
     router.delete('/:id',

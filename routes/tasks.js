@@ -7,6 +7,7 @@ module.exports = (server) => {
 
     router.post('/',
         server.middlewares.bodyParser.json(),
+        server.middlewares.ensureBodyFields(['title', 'dueDate']),
         server.controllers.tasks.create);
 
     router.delete('/:id',

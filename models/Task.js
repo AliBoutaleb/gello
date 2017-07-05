@@ -10,6 +10,10 @@ const TaskSchema = Schema({
     dueDate: {
         type: Date,
         required: true
+    },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'Person'
     }
 });
 

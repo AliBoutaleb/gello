@@ -26,7 +26,11 @@ const PersonSchema = Schema({
 
     birthDate: {
         type: Date,
-    }
+    },
+    tasks: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Task'
+    }]
 });
 
 module.exports = mongoose.model('Person', PersonSchema);
