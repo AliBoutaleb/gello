@@ -1,6 +1,6 @@
 module.exports = (server) => {
     server.controllers = {
-        persons: require('./persons')(server),
+        persons: require('./users')(server),
         tasks: require('./tasks')(server)
     };
 };

@@ -13,7 +13,7 @@ const TaskSchema = Schema({
     },
     owner: {
         type: Schema.Types.ObjectId,
-        ref: 'Person'
+        ref: 'User'
     }
 });
 

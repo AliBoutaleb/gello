@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 
 module.exports = (server) => {
-    const Person = server.models.Person;
+    const User = server.models.User;
 
     return {
         list,
@@ -11,14 +11,14 @@ module.exports = (server) => {
     };
 
     function list(req, res) {
-        Person.find()
+        User.find()
             .then(persons => {
                 res.send(persons);
             });
     }
 
     function create(req, res) {
-        Person.create(req.body)
+        User.create(req.body)
             .then(person => {
                 res.status(201).send(person);
             })
@@ -26,17 +26,18 @@ module.exports = (server) => {
     }
 
     function remove(req, res) {
-        Person.findByIdAndRemove(req.params.id)
+        User.findByIdAndRemove(req.params.id)
             .then(()=> {
                 res.status(204).send();
             })
     }
 
     function update(req, res) {
-        Person.findByIdAndUpdate(req.params.id, req.body)
+        User.findByIdAndUpdate(req.params.id, req.body)
             .then(() => {
                 res.status(204).send();
             })
+            .catch(err => res.status(500).send(err))
     }
 };
 

@@ -3,7 +3,7 @@ mongoose.connect('mongodb://localhost:27017/al-janv-db');
 
 module.exports = (server) => {
     server.models = {
-        Person: require('./Person'),
+        User: require('./User'),
         Task: require('./Task')
     };
 };
