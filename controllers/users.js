@@ -1,4 +1,4 @@
-const bodyParser = require('body-parser');
+const sha1 = require('sha1');
 
 module.exports = (server) => {
     const User = server.models.User;
@@ -18,6 +18,7 @@ module.exports = (server) => {
     }
 
     function create(req, res) {
+        req.body.password = sha1(req.body.password);
         User.create(req.body)
             .then(person => {
                 res.status(201).send(person);
