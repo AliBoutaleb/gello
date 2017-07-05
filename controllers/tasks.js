@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 
 module.exports = (server) => {
     const Task = server.models.Task;
+    const User = server.models.User;
 
     return {
         list,
@@ -16,14 +17,28 @@ module.exports = (server) => {
     }
 
     function create(req, res) {
-        return Task.create(req.body)
+        let task = new Task(req.body);
+        task.owner = req.token.userId;
+
+        task.save()
+            .then(addToUser)
             .then(task => res.status(201).send(task))
             .catch(error => res.status(500).send(error));
+
+
+        function addToUser(task) {
+            return User.findById(req.token.userId)
+                .then(user => {
+                    user.tasks.push(task);
+                    return user.save();
+                })
+                .then(user => {return task;});
+        }
     }
 
     function remove(req, res) {
         return Task.findByIdAndRemove(req.params.id)
-            .then( () => res.status(204).send())
+            .then(() => res.status(204).send())
     }
 
     function update(req, res) {

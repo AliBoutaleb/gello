@@ -6,6 +6,7 @@ module.exports = (server) => {
         server.controllers.tasks.list);
 
     router.post('/',
+        server.middlewares.ensureAuthenticated,
         server.middlewares.bodyParser.json(),
         server.middlewares.ensureBodyFields(['title', 'dueDate']),
         server.controllers.tasks.create);

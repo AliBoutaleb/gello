@@ -12,9 +12,7 @@ module.exports = (server) => {
 
     function list(req, res) {
         User.find()
-            .then(persons => {
-                res.send(persons);
-            });
+            .then(users => res.send(users));
     }
 
     function create(req, res) {
