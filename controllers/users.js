@@ -19,11 +19,24 @@ module.exports = (server) => {
 
     function create(req, res) {
         req.body.password = sha1(req.body.password);
-        User.create(req.body)
-            .then(person => {
-                res.status(201).send(person);
-            })
-            .catch(err => res.status(500).send(err));
+
+        return findUser()
+            .then(ensureNone)
+            .then(createUser)
+            .catch(err => res.status(err.code || 500).send(err.reason || err));
+
+        function findUser() {
+            return User.findOne({email: req.body.email})
+        }
+
+        function ensureNone(user) {
+            return user ? Promise.reject({code: 403, reason: 'user.exists'}) : null;
+        }
+
+        function createUser() {
+            User.create(req.body)
+                .then(user => res.status(201).send(user));
+        }
     }
 
     function remove(req, res) {
