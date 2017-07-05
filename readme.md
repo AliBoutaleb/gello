@@ -1,3 +1,11 @@
-#Exercice
+#Examen
 
-### Ecrire un middleware qui permet de vérifier que les champs nécessaires sont présent dans le body lors de la request, sinon renvoyer un code 403.
+- Construire une nouvelle entité nommée `Project`.
+ - Ajouter une association N-N entre `Project` et `User`.
+ 
+- Exposer les méthodes de CRUD pour cette entitée.
+- Ajouter les règles fonctionnelles suivantes:
+ - Il ne peut y avoir qu'un seul créateur par projet
+ - Il est possible d'avoir plusieurs membres sur un projet.
+ - **Seul un créateur** de projet peut ajouter un utilisateur par son identifiant
+ - **Seul un créateur** de projet peut supprimer un membre d'un projet par son identifiant.
