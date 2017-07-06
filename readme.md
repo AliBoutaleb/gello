@@ -1,6 +1,6 @@
 # Projet Thématique NodeJS & Javascript Avancé : Grello
 
-Pour votre projet de cinquième année, vous aurez 5h, par équipe de 4 à 5, pour améliorer l'API REST conçue pendant votre semaine thématique.
+Pour votre projet de troisième année vous devrez concevoir une API REST.
 
 ## Présentation : 
 
