@@ -8,13 +8,13 @@ module.exports = (server) => {
 
     router.post('/:id_project/:id_user',
         server.middlewares.ensureAuthenticated,
-        server.middlewares.ensureRights(0),
+    //server.middlewares.ensureRights(0),
         server.middlewares.bodyParser.json(),
         server.controllers.teams.addMember);
 
     router.delete('/:id_user',
         server.middlewares.ensureAuthenticated,
-        server.middlewares.ensureRights(0),
+    //server.middlewares.ensureRights(0),
         server.controllers.teams.removeMember);
 
     router.put('/:id',

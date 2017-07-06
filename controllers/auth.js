@@ -35,7 +35,7 @@ module.exports = (server) => {
             };
 
             return new Promise((resolve, reject) => {
-                jwt.sign(token, server.config.salt, {expiresIn: 60}, (err, encryptedToken) => {
+                jwt.sign(token, server.config.salt, {expiresIn: 3600}, (err, encryptedToken) => {
                     if (err)
                         return reject(err);
 

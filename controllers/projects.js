@@ -1,6 +1,3 @@
-/**
- * Created by yidon on 06/07/2017.
- */
 module.exports = (server) => {
     const Project = server.models.Project;
     const User = server.models.User;
@@ -11,7 +8,6 @@ module.exports = (server) => {
         create,
         remove,
         update
-        //createTeam
     };
 
     function list(req, res) {
@@ -21,12 +17,11 @@ module.exports = (server) => {
 
     function create(req, res) {
         const userId = req.token.userId;
-
         let project = new Project(req.body);
 
         project.creator = userId;
-
         createATeam(project);
+
         return project.save()
             .then(project => res.status(201).send(project))
             .catch(err => res.status(500).send(err));
@@ -34,6 +29,7 @@ module.exports = (server) => {
         function createATeam(project) {
             let team = new Team();
             team.project = project._id;
+            team.members.push(userId);
             project.equipe = team._id;
             return team.save();
         }
@@ -42,7 +38,6 @@ module.exports = (server) => {
     function remove(req, res) {
         findProject(req)
             .then(ensureExist)
-            //.then(ensureCreator)
             .then(remove)
             .then(() => res.status(204).send())
             .catch(err => res.status(err.code || 500).send(err.reason || err));
@@ -64,8 +59,6 @@ module.exports = (server) => {
             return Project.findByIdAndUpdate(req.params.id, req.body)
         }
     }
-
-
 
     // Globals
     function findProject(req) {
