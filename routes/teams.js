@@ -6,13 +6,12 @@ module.exports = (server) => {
         server.middlewares.ensureAuthenticated,
         server.controllers.teams.list);
 
-    router.post('/:id_project/:id_user',
+    router.post('/:id/:userId',
         server.middlewares.ensureAuthenticated,
     //server.middlewares.ensureRights(0),
-        server.middlewares.bodyParser.json(),
         server.controllers.teams.addMember);
 
-    router.delete('/:id_user',
+    router.delete('/:id/:userId',
         server.middlewares.ensureAuthenticated,
     //server.middlewares.ensureRights(0),
         server.controllers.teams.removeMember);

@@ -1,5 +1,6 @@
 module.exports = (server) => {
     const Team = server.models.Team;
+    const User = server.models.User;
 
     return {
         list,
@@ -23,7 +24,7 @@ module.exports = (server) => {
     }
 
     function addMember(req, res) {
-        let Team;
+        let team;
 
         findTeam(req)
             .then(ensureExist)
@@ -46,6 +47,14 @@ module.exports = (server) => {
         function addMember(user) {
             team.members.push(user);
             return team.save();
+        }
+
+        function findTeam(req) {
+            return Team.findById(req.params.id)
+        }
+
+        function ensureExist(data) {
+            return data ? data : Promise.reject({code: 422, reason: 'unprocessable.entities'});
         }
     }
 
@@ -71,6 +80,10 @@ module.exports = (server) => {
         function removeMember(user) {
             team.members.remove(user);
             return team.save();
+        }
+
+        function ensureExist(data) {
+            return data ? data : Promise.reject({code: 422, reason: 'unprocessable.entities'});
         }
     }
 };

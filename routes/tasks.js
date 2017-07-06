@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 module.exports = (server) => {
     router.get('/',
+        server.middlewares.ensureAuthenticated,
         server.controllers.tasks.list);
 
     router.post('/',
