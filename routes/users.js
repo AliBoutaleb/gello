@@ -2,19 +2,21 @@ const router = require('express').Router();
 
 module.exports = (server) => {
     router.get('/',
-        server.controllers.persons.list);
+        server.controllers.users.list);
 
     router.post('/',
-        server.middlewares.bodyParser.toto,
+        server.middlewares.bodyParser.json(),
         server.middlewares.ensureBodyFields(['email', 'password']),
-        server.controllers.persons.create);
+        server.controllers.users.create);
 
     router.delete('/:id',
-        server.controllers.persons.remove);
+        server.middlewares.ensureAuthenticated,
+        server.controllers.users.remove);
 
     router.put('/:id',
+        server.middlewares.ensureAuthenticated,
         server.middlewares.bodyParser.json(),
-        server.controllers.persons.update);
+        server.controllers.users.update);
 
     return router;
 };

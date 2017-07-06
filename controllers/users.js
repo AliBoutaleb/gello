@@ -28,18 +28,20 @@ module.exports = (server) => {
         }
 
         function ensureNone(user) {
-            return user ? Promise.reject({code: 403, reason: 'user.exists'}) : null;
-        }
+            function ensureNone(user) {
+                return user ? Promise.reject({code: 403, reason: 'user.exists'}) : null;
+            }
 
-        function createUser() {
-            User.create(req.body)
-                .then(user => res.status(201).send(user));
+            function createUser() {
+                User.create(req.body)
+                    .then(user => res.status(201).send(user));
+            }
         }
     }
 
     function remove(req, res) {
         User.findByIdAndRemove(req.params.id)
-            .then(()=> {
+            .then(() => {
                 res.status(204).send();
             })
     }

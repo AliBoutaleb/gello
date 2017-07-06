@@ -7,30 +7,27 @@ const UserSchema = Schema({
         default: 'unknown',
         required: true
     },
-
     last_name: {
         type: String,
         default: 'unknown',
         required: true
     },
-
     email: {
         type: String,
         required: true,
         unique: true
     },
-
     password: {
         type: String,
         required: true
     },
-
-    birthDate: {
-        type: Date,
-    },
-    tasks: [{
+    role:{
         type: Schema.Types.ObjectId,
-        ref: 'Task'
+        ref:'Role'
+    },
+    tasks:[{
+        type: Schema.Types.ObjectId,
+        ref:'Task'
     }]
 });
 

@@ -1,4 +1,19 @@
 {
     "port": "8080",
-    "salt": "25zqsfmjvbq$v2"
+    "salt": "25zqsfmjvbq$v2",
+    "roles": [
+        {
+            "title": "admin",
+            "level": 0
+        },
+        {
+            "title": "manager",
+            "level": 1
+        },
+        {
+            "title": "user",
+            "level": 2
+        }
+    ]
+
 }
