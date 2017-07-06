@@ -51,25 +51,24 @@ Grello a pour but de devenir une plateforme de gestion de taches réservée aux 
     - Permettre de quitter une équipe
      
 ### 2 - Regles fonctionelles
-- Un projet ne peut contenir qu'une seul équipe.
+- Un projet ne peut être associée qu'a une seule équipe.
 - Une équipe ne peut être que sur un seul projet.
 - Un utilisateur peut-être membre de plusieurs équipes.
 - Une équipe doit obligatoirement être associée à un projet.
-- Une équipe ne peut-être créée que par le créateur du projet.
-- Le créateur d'une équipe rejoins automatiquement celle-ci lors de sa création avec le role "Owner".
+- Une équipe est automatique créée à la création d'un projet.
+- Le créateur d'un projet rejoint automatiquement celle-ci lors de sa création avec le role "Admin".
 - Une tache doit obligatoirement être associée à un projet.
 - Une tache ne peut être créée que par le créateur du projet ou un membre de l'équipe associée au projet.
-- L'attribution/modification d'un rôle pour un membre d'une équipe ne peut se faire que par le créateur de cette équipe.
-- Les roles de membres d'une équipe sont : "Owner", "Admin", "Member"
-- La suppression d'un membre de l'équipe, a l'exception du role ne peut se faire que par le créateur de l'équipe, l'administrateur, ou le membre lui-même.
-- La liste des taches d'un projet est accessible par tous les membres du projet
-- L'assignation d'une tache à un membre de l'équipe ne peut se faire que par le créateur de l'équipe, ou l'administrateur de l'équipe
-- Un utilisateur peu quitter une équipe
-- Si un utilisateur quitte une équipe, les taches qui lui sont attribuées reviennent à l'administrateur de l'équipe, si aucun administrateur est désigné, les taches reviennent au créateur de l'équipe.
-- La modification d'une tache ne peut se faire que par l'utilisateur assigné sur la tache, le créateur de l'équipe ou l'administrateur.
+- Une tache peut être assignée à un membre de l'équipe.
+- L'assignation d'une tache ne peut se faire que part le createur de l'équipe ou un Admin.
+- L'attribution/modification d'un rôle pour un membre d'une équipe ne peut se faire que par le créateur de du project associée à l'équipe.
+- Les roles de membres d'une équipe sont : "Admin", "Manager", "User"
+- La suppression d'un membre de l'équipe, ne peut se faire que par le créateur de l'équipe, ou un Admin, ou le membre lui-même (quitte le projet).
+- La liste des taches d'un projet est accessible uniquement par tous les membres du projet
+- Si un utilisateur quitte une équipe, les taches qui lui sont attribuées reviennent au créateur du projet associée à l'équipe.
+- La modification d'une tache ne peut se faire que par l'utilisateur assigné sur la tache, le créateur de l'équipe ou un Admin.
     
 
 ### 3 - Règles Techniques
 - L'ensemble des échanges sera fera via le `Content-Type: application/json`.
 - L'identification d'un utilisateur se fera par le biais d'un échange de Token de le header `Authorization`.
-- Votre projet doit être fonctionnel "from scratch" ce qui signifie que lors de la soutenance, il peut-être demandé d'écraser l'ensemble de vos données, et de démarrer sur un repertoire vide où l'on clonera votre projet depuis un repository distant. Pensez à bien initialiser vos script de démarrage et à commit/push votre code sur un gestionnaire de versions
