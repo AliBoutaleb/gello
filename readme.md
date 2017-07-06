@@ -6,7 +6,36 @@ Pour votre projet de cinquième année, vous aurez 5h, par équipe de 4 à 5, po
 
 Grello a pour but de devenir une plateforme de gestion de taches réservée aux personnes du réseau GES. Votre mission est de concevoir la partie serveur, une API REST en NodeJS permettant aux futurs étudiants de bénéficier de cette plateforme
 
- 
+### Modelisation, champs obligatoires (non relationel)
+
+```javascript
+// Project
+{
+    title: String
+}
+
+// User
+{
+    email: String,
+    password: String
+}
+
+// Tache 
+{
+    title: String,
+    dueDate: Date
+}
+
+// Role 
+{
+    title: String,
+    level: Number
+}
+
+// Team
+...
+```
+
 ### 1 - Regles d'acces
 - Les services suivant seront publiques : 
      - Permettre de consulter la liste des projets 
