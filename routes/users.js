@@ -5,7 +5,7 @@ module.exports = (server) => {
         server.controllers.persons.list);
 
     router.post('/',
-        server.middlewares.bodyParser.json(),
+        server.middlewares.bodyParser.toto,
         server.middlewares.ensureBodyFields(['email', 'password']),
         server.controllers.persons.create);
 
